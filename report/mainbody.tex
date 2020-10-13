@@ -16,9 +16,10 @@ improve the accuracy, and make the box office revenue forecast for some of the g
 In this paper, we train the random forest model with the integrated data, 
 and use the model to predict the box office of movies.
 \section{Preliminaries} \label{sec-preliminaries}
-In the early stage, the existing data were visually analyzed.
+Analyze the data in the preparation stage, and analyze it from different angles and box office. 
+For example, from the perspective of budget, the number of actors, the number of crew members, 
+and post-promotion. It also showcases popular movie genres and movie language in the form of a word cloud.
 
-In the pre production budget, the number of actors and the number of directors and other crew members on the impact of box office.
 
 %\begin{center}
 %  \begin{minipage}{0.3\linewidth}
@@ -40,11 +41,10 @@ In the pre production budget, the number of actors and the number of directors a
 %  \end{minipage}
 %\end{center}
 
-In the late stage of film production, the influence of home page, film introduction, film tagline on the box office of films is also discussed.
 
-% \begin{center}
-% \begin{minipage}{0.3\linewidth}
-% \centering
+%\begin{center}
+%  \begin{minipage}{0.3\linewidth}
+%  \centering
 %    \includegraphics[width=0.8\linewidth]{figures//has_homepage.eps}
 %  {\small{Homepage}}
 %  \end{minipage}
@@ -60,19 +60,18 @@ In the late stage of film production, the influence of home page, film introduct
 %    \includegraphics[width=0.8\linewidth]{figures//overview.eps}
 %  {\small{Overview}}
 %  \end{minipage}
-% \end{center}
+%\end{center}
 
-Some other influences, such as film series, film companies and the number of film companies participating in the investment, etc.
 %\begin{center}
 %  \begin{minipage}{0.3\linewidth}
 %  \centering
-%    \includegraphics[width=0.8\linewidth]{figures//collection.eps}
+%    \includegraphics[width=0.8\linewidth]{figures//collection.eps}\\
 %  {\small{File Series}}
 %  \end{minipage}
 %  \hfill
 %  \begin{minipage}{0.3\linewidth}
 %  \centering
-%    \includegraphics[width=0.8\linewidth]{figures//company.eps}
+%    \includegraphics[width=0.8\linewidth]{figures//company.eps}\\
 %  {\small{File Company}}
 %  \end{minipage}
 %  \hfill
@@ -83,7 +82,6 @@ Some other influences, such as film series, film companies and the number of fil
 %  \end{minipage}
 %\end{center}
 
-The popularity of the film's language and genre among the audience also affects the box office.
 
 %\begin{center}
 %  \begin{minipage}{0.4\linewidth}
@@ -101,9 +99,9 @@ The popularity of the film's language and genre among the audience also affects 
 %\end{center}
 
 \section{Method} \label{sec-method}
-After the preparatory work, the data are further processed.
-
-Processing data that does not affect the box office.
+After the preparation work is completed, the data will be further processed. 
+Delete data not related to the box office, For example: imdb_id, orginal_title, poster_path, status.
+Normalize some data,For example: has_homepage, collection, overview, isTaglineNA, Keywords_count etc
 
 %5\begin{table}
 %  \begin{center}
@@ -127,9 +125,6 @@ Processing data that does not affect the box office.
 %      \end{tabular}
 %  \end{center}
 %\end{table}
-
-Normalization of training data and test data.
-
 
 After the completion of data processing, the model was established using random forest algorithm.
 
