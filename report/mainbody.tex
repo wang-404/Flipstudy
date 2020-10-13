@@ -20,90 +20,90 @@ In the early stage, the existing data were visually analyzed.
 
 In the pre production budget, the number of actors and the number of directors and other crew members on the impact of box office.
 
-\begin{center}
-  \begin{minipage}{0.3\linewidth}
-  \centering
-    \includegraphics[width=0.8\linewidth]{figures//budget.eps}
-  {\small{Budget}}
-  \end{minipage}
-  \hfill
-  \begin{minipage}{0.3\linewidth}
-  \centering
-    \includegraphics[width=0.8\linewidth]{figures//cest.eps}\\
-  {\small{Cast}}
-  \end{minipage}
-  \hfill
-  \begin{minipage}{0.3\linewidth}
-  \centering
-    \includegraphics[width=0.8\linewidth]{figures//crew.eps}\\
-  {\small{Crew}}
-  \end{minipage}
-\end{center}
+%\begin{center}
+%  \begin{minipage}{0.3\linewidth}
+%  \centering
+%    \includegraphics[width=0.8\linewidth]{figures//budget.eps}
+%  {\small{Budget}}
+%  \end{minipage}
+%  \hfill
+%  \begin{minipage}{0.3\linewidth}
+%  \centering
+%    \includegraphics[width=0.8\linewidth]{figures//cest.eps}\\
+%  {\small{Cast}}
+%  \end{minipage}
+%  \hfill
+%  \begin{minipage}{0.3\linewidth}
+%  \centering
+%    \includegraphics[width=0.8\linewidth]{figures//crew.eps}\\
+%  {\small{Crew}}
+%  \end{minipage}
+%\end{center}
 
 In the late stage of film production, the influence of home page, film introduction, film tagline on the box office of films is also discussed.
 
-\begin{center}
-  \begin{minipage}{0.3\linewidth}
-  \centering
-    \includegraphics[width=0.8\linewidth]{figures//has_homepage.eps}
-  {\small{Homepage}}
-  \end{minipage}
-  \hfill
-  \begin{minipage}{0.3\linewidth}
-  \centering
-    \includegraphics[width=0.8\linewidth]{figures//isTanglineNA.eps}
-  {\small{Tagline}}
-  \end{minipage}
-  \hfill
-  \begin{minipage}{0.3\linewidth}
-  \centering
-    \includegraphics[width=0.8\linewidth]{figures//overview.eps}
-  {\small{Overview}}
-  \end{minipage}
-\end{center}
+% \begin{center}
+% \begin{minipage}{0.3\linewidth}
+% \centering
+%    \includegraphics[width=0.8\linewidth]{figures//has_homepage.eps}
+%  {\small{Homepage}}
+%  \end{minipage}
+%  \hfill
+%  \begin{minipage}{0.3\linewidth}
+%  \centering
+%    \includegraphics[width=0.8\linewidth]{figures//isTanglineNA.eps}
+%  {\small{Tagline}}
+%  \end{minipage}
+%  \hfill
+%  \begin{minipage}{0.3\linewidth}
+%  \centering
+%    \includegraphics[width=0.8\linewidth]{figures//overview.eps}
+%  {\small{Overview}}
+%  \end{minipage}
+% \end{center}
 
-Some other influences, such as film series and the number of film companies participating in the investment.
-\begin{center}
-  \begin{minipage}{0.3\linewidth}
-  \centering
-    \includegraphics[width=0.8\linewidth]{figures//collection.eps}\\
-  {\small{File Series}}
-  \end{minipage}
-  \hfill
-  \begin{minipage}{0.3\linewidth}
-  \centering
-    \includegraphics[width=0.8\linewidth]{figures//company.eps}\\
-  {\small{File Company}}
-  \end{minipage}
+Some other influences, such as film series, film companies and the number of film companies participating in the investment, etc.
+%\begin{center}
+%  \begin{minipage}{0.3\linewidth}
+%  \centering
+%    \includegraphics[width=0.8\linewidth]{figures//collection.eps}
+%  {\small{File Series}}
+%  \end{minipage}
+%  \hfill
+%  \begin{minipage}{0.3\linewidth}
+%  \centering
+%    \includegraphics[width=0.8\linewidth]{figures//company.eps}
+%  {\small{File Company}}
+%  \end{minipage}
 %  \hfill
 %  \begin{minipage}{0.3\linewidth}
 %  \centering
 %    \includegraphics[width=0.8\linewidth]{figures//counrty.eps}
 %  {\small{Company Number}}
 %  \end{minipage}
-\end{center}
+%\end{center}
 
-The word cloud shows the movie types and languages that are liked by the audience.
+The popularity of the film's language and genre among the audience also affects the box office.
 
-\begin{center}
-  \begin{minipage}{0.4\linewidth}
-  \centering
-    \includegraphics[width=0.8\linewidth]{figures//genre_clold.eps}\\
-  {\small{Genre}}
-  \end{minipage}
-  \hfill
-  \begin{minipage}{0.4\linewidth}
-  \centering
-    \includegraphics[width=0.8\linewidth]{figures//language.eps}\\
-  {\small{Language}}
-  \end{minipage}
-  \hfill
-\end{center}
+%\begin{center}
+%  \begin{minipage}{0.4\linewidth}
+%  \centering
+%    \includegraphics[width=0.8\linewidth]{figures//genre_clold.eps}\\
+%  {\small{Genre}}
+%  \end{minipage}
+%  \hfill
+%  \begin{minipage}{0.4\linewidth}
+%  \centering
+%    \includegraphics[width=0.8\linewidth]{figures//language.eps}\\
+%  {\small{Language}}
+%  \end{minipage}
+%  \hfill
+%\end{center}
 
 \section{Method} \label{sec-method}
-After the preparation work is completed, the data will be further processed. 
-Delete data not related to the box office, For example: imdb_id, orginal_title, poster_path, status.
-Normalize some data,For example: has_homepage, collection, overview, isTaglineNA, Keywords_count etc
+After the preparatory work, the data are further processed.
+
+Processing data that does not affect the box office.
 
 %5\begin{table}
 %  \begin{center}
@@ -127,6 +127,9 @@ Normalize some data,For example: has_homepage, collection, overview, isTaglineNA
 %      \end{tabular}
 %  \end{center}
 %\end{table}
+
+Normalization of training data and test data.
+
 
 After the completion of data processing, the model was established using random forest algorithm.
 
