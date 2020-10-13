@@ -62,28 +62,28 @@ In the late stage of film production, the influence of home page, film introduct
   \end{minipage}
 \end{center}
 
-Some other influences, such as film series, film companies and the number of film companies participating in the investment, etc.
+Some other influences, such as film series and the number of film companies participating in the investment.
 \begin{center}
   \begin{minipage}{0.3\linewidth}
   \centering
-    \includegraphics[width=0.8\linewidth]{figures//collection.eps}
+    \includegraphics[width=0.8\linewidth]{figures//collection.eps}\\
   {\small{File Series}}
   \end{minipage}
   \hfill
   \begin{minipage}{0.3\linewidth}
   \centering
-    \includegraphics[width=0.8\linewidth]{figures//company.eps}
+    \includegraphics[width=0.8\linewidth]{figures//company.eps}\\
   {\small{File Company}}
   \end{minipage}
-  \hfill
-  \begin{minipage}{0.3\linewidth}
-  \centering
-    \includegraphics[width=0.8\linewidth]{figures//counrty.eps}
-  {\small{Company Number}}
-  \end{minipage}
+%  \hfill
+%  \begin{minipage}{0.3\linewidth}
+%  \centering
+%    \includegraphics[width=0.8\linewidth]{figures//counrty.eps}
+%  {\small{Company Number}}
+%  \end{minipage}
 \end{center}
 
-The popularity of the film's language and genre among the audience also affects the box office.
+The word cloud shows the movie types and languages that are liked by the audience.
 
 \begin{center}
   \begin{minipage}{0.4\linewidth}
@@ -101,9 +101,9 @@ The popularity of the film's language and genre among the audience also affects 
 \end{center}
 
 \section{Method} \label{sec-method}
-After the preparatory work, the data are further processed.
-
-Processing data that does not affect the box office.
+After the preparation work is completed, the data will be further processed. 
+Delete data not related to the box office, For example: imdb_id, orginal_title, poster_path, status.
+Normalize some data,For example: has_homepage, collection, overview, isTaglineNA, Keywords_count etc
 
 %5\begin{table}
 %  \begin{center}
@@ -127,9 +127,6 @@ Processing data that does not affect the box office.
 %      \end{tabular}
 %  \end{center}
 %\end{table}
-
-Normalization of training data and test data.
-
 
 After the completion of data processing, the model was established using random forest algorithm.
 
