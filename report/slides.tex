@@ -171,13 +171,7 @@ cf={TMDB Box Office Prediction},
 
 \maketitle
 
-%\begin{slide}{Overview}
-%\tableofcontents[content=sections]
-%\end{slide}
 
-
-%%==========================================================================================
-%%
 \begin{slide}[toc=,bm=]{Table of content}
 \tableofcontents[content=currentsection,type=1]
 \end{slide}
@@ -290,25 +284,30 @@ cf={TMDB Box Office Prediction},
 %%
 %%==========================================================================================
 
-\begin{slide}[toc=,bm=]{Company and Series}
+\begin{slide}[toc=,bm=]{Series}
   \begin{itemize}
-    \item The relationship between film company, film series and revenue.
+    \item The relationship betweenfilm series and revenue.
   \end{itemize}
   \begin{figure}[htbp]
     \centering
-    \begin{minipage}[t]{0.48\textwidth}
-      \centering
-      \includegraphics[width=0.7\textwidth]{figures//collection.eps}\\
-      \vspace{-1.4em}
-      \caption{File Series}
-    \end{minipage}
-    \begin{minipage}[t]{0.48\textwidth}
-      \centering
-      \includegraphics[width=0.7\textwidth]{figures//company.eps}\\
-      \vspace{-1.4em}
-      \caption{File Company}
-    \end{minipage}
+    \includegraphics[width=0.4\textwidth]{figures//collection.eps}
+    \caption{File Series}
   \end{figure}
+  %\begin{figure}[htbp]
+  %  \centering
+  %  \begin{minipage}[t]{0.48\textwidth}
+  %    \centering
+  %    
+  %    \vspace{-1.4em}
+  %    
+  %  \end{minipage}
+  %  \begin{minipage}[t]{0.48\textwidth}
+  %    \centering
+  %    
+  %    \vspace{-1.4em}
+  %    \caption{File Company}
+  %  \end{minipage}
+  %\end{figure}
 \end{slide}
 
 
@@ -318,7 +317,7 @@ cf={TMDB Box Office Prediction},
   \end{itemize}
   \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.4\textwidth]{figures//counrty.eps}
+    \includegraphics[width=0.4\textwidth]{figures//company.eps}
     \caption{Company Number}
   \end{figure}
 \end{slide}
@@ -395,12 +394,12 @@ cf={TMDB Box Office Prediction},
 %%==========================================================================================
 %%
 \begin{slide}[toc=,bm=]{Realte Date}
-%  \begin{itemize}
-%    \item The income of the film is directly proportional to the budget.
-%  \end{itemize}
+  \begin{itemize}
+    \item The impact of the movie's release time on the box office.
+  \end{itemize}
   \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.7\textwidth]{figures//release_date.eps}
+    \includegraphics[width=0.5\textwidth]{figures//release_date.eps}
     \caption{Realte Date}
   \end{figure}
 \end{slide}
@@ -446,16 +445,14 @@ cf={TMDB Box Office Prediction},
 
 %%
 \begin{slide}[toc=,bm=]{Model}
-
+  Random Forest Regression
 \begin{itemize}
-  \item Linear Regression
-     \begin{itemize}
-       \item 2.4236034243650315
-     \end{itemize}  
-  \item Random Forest Regression
-     \begin{itemize}
-       \item 2.21274632296787
-     \end{itemize}
+  \item The random forest algorithm is an ensemble technique that combines 
+  multiple decision trees. A random forest usually has a better generalization performance than 
+  an individual tree due to randomness, which helps to decrease the model’s varaiance. 
+  Other advantages of random forests are that they are less sensitive to outliers 
+  in the dataset and don’t require much parameter tuning. The only parameter 
+  in random forests that we typically need to experiment with is the number of trees in the ensemble. 
 \end{itemize}
 
 \end{slide}
