@@ -149,7 +149,7 @@ basicstyle=\footnotesize\ttfamily}
 % title
 % TODO: Customize to your Own Title, Name, Address
 %
-\title{TMDB Box Office Prediction}
+\title{Tweet Sentiment Extraction}
 \author{
   \\Shukai Wang
   \\Xi'an Shiyou University
@@ -163,7 +163,7 @@ rf=\href{http://www.tulip.org.au}{
 Last Changed by: \textsc{\gitCommitterName}\ (\gitAuthorDate)
 %Last Changed by: \textsc{\gitCommitterName}\ \gitVtagn-\gitAbbrevHash\ (\gitAuthorDate)
 },
-cf={TMDB Box Office Prediction},
+cf={Tweet Sentiment Extraction},
 }
 
 
@@ -171,7 +171,13 @@ cf={TMDB Box Office Prediction},
 
 \maketitle
 
+%\begin{slide}{Overview}
+%\tableofcontents[content=sections]
+%\end{slide}
 
+
+%%==========================================================================================
+%%
 \begin{slide}[toc=,bm=]{Table of content}
 \tableofcontents[content=currentsection,type=1]
 \end{slide}
@@ -187,15 +193,18 @@ cf={TMDB Box Office Prediction},
 \begin{slide}{Description}
   \begin{center}
 
-    \twotonebox{\rotatebox{90}{description}}{\parbox{.86\textwidth}
+    \twotonebox{\rotatebox{90}{Description}}{\parbox{.86\textwidth}
     {
-      The box office revenue of the movie is predicted by the given information. 
+      Tweets are circulating every second, and it is difficult to say 
+      whether the sentiment behind a particular tweet will affect the company, 
+      the viral (positive) or devastating profits of the personal brand due to negative effects. 
+      In this case, it is very important to capture emotions with words in the process of creating 
+      and updating decisions and reactions within a few seconds. In this game, you need to choose the 
+      emotional part of the tweet (word or phrase).
       \begin{itemize}
         \item 
-        The data provided include actors, crew, plot keywords, budget, 
-        poster, release date, language, production company, country, etc.   
-        \item 
-        Try to predict the total global box office revenue of the film.
+        According to a given data set, determine which words support positive, 
+        negative or neutral emotions.  
       \end{itemize}
     }
     }
@@ -218,17 +227,19 @@ cf={TMDB Box Office Prediction},
   
   \begin{table}[htbp]
   
-    \caption{Data}
+    \caption{Train}
   
-    \begin{tabular}{p{60pt} p{200pt} p{200pt}}\toprule
-     Name & Description  & Attribute \\
+    \begin{tabular}{p{100pt} p{200pt}}\toprule
+      Attribute & Explanation \\
          \midrule
-         train.csv
-         & Training set(data from The Movie Database)  &  actors, crew, plot keywords, budget, poster, release date, language, production company, country, etc \\
-         test.csv
-         & Test set(Box office forecast) & same as training attribute except revenue \\
-         sample.csv
-         & submit document & ID,revenue \\
+         textID
+         & Text number \\
+         text
+         & The text given in the training data. \\
+         selected_text
+         & The selected part of the text in the given text.  \\
+         sentiment
+         & The emotion of the selected part of the text.  \\
         \bottomrule
    
     \end{tabular}
@@ -244,275 +255,291 @@ cf={TMDB Box Office Prediction},
 
 \section{Date Analysis}
 
-\begin{slide}{Budget}
+\begin{slide}{Sentiment}
   \begin{itemize}
-    \item The income of the film is directly proportional to the budget.
-  \end{itemize}
-  \begin{figure}[htbp]
-    \centering
-    \includegraphics[width=0.5\textwidth]{figures//budget.eps}
-    \caption{Budget}
-  \end{figure}
-\end{slide}
-%%
-%%==========================================================================================
-
-
-%%==========================================================================================
-%%
-\begin{slide}[toc=,bm=]{Cast and Crew}
-  \begin{itemize}
-    \item The revenue of a film has a great relationship with 
-    the company and the number of actors.
+    \item Positive, negative, and neutral in sentiment, respectively, 
+    account for the number and proportion. Neutral is 11117, positive is 8582, and negative is 7781.
   \end{itemize}
   \begin{figure}[htbp]
     \centering
     \begin{minipage}[t]{0.48\textwidth}
       \centering
-      \includegraphics[width=0.9\textwidth]{figures//cest.eps}\\
+      \includegraphics[width=0.9\textwidth]{figures//sentiment.eps}\\
       \vspace{-1.4em}
-      \caption{Cast Number vs Revenue}
+      \caption{Sentiment}
     \end{minipage}
     \begin{minipage}[t]{0.48\textwidth}
       \centering
-      \includegraphics[width=0.9\textwidth]{figures//crew.eps}\\
+      \includegraphics[width=0.9\textwidth]{figures//snetimentdistruct.eps}\\
       \vspace{-1.4em}
-      \caption{Crew Number vs Revenue}
+      \caption{Sentiment Distribution}
     \end{minipage}
   \end{figure}
 \end{slide}
 %%
 %%==========================================================================================
 
-\begin{slide}[toc=,bm=]{Series}
-  \begin{itemize}
-    \item The relationship betweenfilm series and revenue.
-  \end{itemize}
-  \begin{figure}[htbp]
-    \centering
-    \includegraphics[width=0.4\textwidth]{figures//collection.eps}
-    \caption{File Series}
-  \end{figure}
-  %\begin{figure}[htbp]
-  %  \centering
-  %  \begin{minipage}[t]{0.48\textwidth}
-  %    \centering
-  %    
-  %    \vspace{-1.4em}
-  %    
-  %  \end{minipage}
-  %  \begin{minipage}[t]{0.48\textwidth}
-  %    \centering
-  %    
-  %    \vspace{-1.4em}
-  %    \caption{File Company}
-  %  \end{minipage}
-  %\end{figure}
-\end{slide}
-
-
-\begin{slide}{Company Number}
-  \begin{itemize}
-    \item The relationship between the number of companies and revenue.
-  \end{itemize}
-  \begin{figure}[htbp]
-    \centering
-    \includegraphics[width=0.4\textwidth]{figures//company.eps}
-    \caption{Company Number}
-  \end{figure}
-\end{slide}
-
-
-
-
-\begin{slide}{Genres}
-  \begin{itemize}
-    \item The most common movie genres seem to be Drama, Comedy, Thriller, Action and Adventure.
-  \end{itemize}
-  \begin{figure}[htbp]
-    \centering
-    \includegraphics[width=0.5\textwidth]{figures//genre_clold.eps}\\
-    \caption{Top Genres}
-  \end{figure}
-\end{slide}
-
-
-\begin{slide}{Language}
-  \begin{itemize}
-    \item The most common languages in the movie data seem to be English , French , Russian  etc.
-  \end{itemize}
-  \begin{figure}[htbp]
-    \centering
-    \includegraphics[width=0.5\textwidth]{figures//language.eps}\\
-    \caption{Top Language}
-  \end{figure}
-\end{slide}
-
-
-
-%%
-%%==========================================================================================
-
 
 %%==========================================================================================
 %%
-
-\begin{slide}[toc=,bm=]{Propaganda}
+\begin{slide}[toc=,bm=]{Selected_text Count}
   \begin{itemize}
-    \item Later stage propaganda has a great influence on the existing.
+    \item After separating selected_text, look at the words used frequently.
+  \end{itemize}
+  \begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.5\textwidth]{figures//st_count_test.eps}
+    \caption{Select_text Count}
+  \end{figure}
+\end{slide}
+%%
+%%==========================================================================================
+
+\begin{slide}[toc=,bm=]{Selected_text Count}
+  \begin{itemize}
+    \item After processing some irrelevant words, count the number of words.
   \end{itemize}
   \begin{figure}[htbp]
     \centering
     \begin{minipage}[t]{0.48\textwidth}
       \centering
-      \includegraphics[width=0.4\textwidth]{figures/has_homepage.eps}
+      \includegraphics[width=0.5\textwidth]{figures//st_count_new_n.eps}\\
       \vspace{-1.4em}
-      \caption{Homepage}
+      \caption{Number Count}
     \end{minipage}
     \begin{minipage}[t]{0.48\textwidth}
       \centering
-      \includegraphics[width=0.4\textwidth]{figures/isTanglineNA.eps}
+      \includegraphics[width=0.9\textwidth]{figures//st_count_new.eps}\\
       \vspace{-1.4em}
-      \caption{Tagline}
-    \end{minipage}
-    \begin{minipage}[t]{0.48\textwidth}
-      \centering
-      \includegraphics[width=0.5\textwidth]{figures/keywords.eps}
-      \vspace{-1.4em}
-      \caption{keywords}
-    \end{minipage}
-    \begin{minipage}[t]{0.48\textwidth}
-      \centering
-      \includegraphics[width=0.5\textwidth]{figures/overview.eps}
-      \vspace{-1.4em}
-      \caption{Overview}
+      \caption{Tree of Most Common Words}
     \end{minipage}
   \end{figure}
 \end{slide}
 
 
-%%==========================================================================================
-%%
-\begin{slide}[toc=,bm=]{Realte Date}
+\begin{slide}{Text Count}
   \begin{itemize}
-    \item The impact of the movie's release time on the box office.
+    \item Count and view the number of text words. Found similar to the selected_text word.
   \end{itemize}
   \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.5\textwidth]{figures//release_date.eps}
-    \caption{Realte Date}
+    \includegraphics[width=0.5\textwidth]{figures//text_count_test.eps}
+    \caption{Text Count}
   \end{figure}
 \end{slide}
-%%
 
 
-\section{Data Processing}
 
 
-\begin{slide}[toc=,bm=]{Data Processing}
+\begin{slide}{Positive Words}
   \begin{itemize}
-    \item Processing data independent of results.
-      \begin{itemize}
-        \item For example:imdb_id,orginal_title,poster_path,status
-      \end{itemize}
-    \item  Normalization of training data and test data.
-      \begin{itemize}
-        \item For example:has_homepage,collection,overview,isTaglineNA,Keywords_count etc
-      \end{itemize}
+    \item Perform word statistics on texts with positive attitudes.
   \end{itemize}
-  \begin{table}[htbp]
-    \caption{Delete Data}
-    \begin{tabular}{p{100pt} | p{200pt}}\toprule
-     Name & Description  \\
-         \midrule
-         imdb_id
-         & ID of movie in TMDB \\
-         orginal_title
-         & The original name of the movie\\
-         poster_path
-         & Movie poster link \\
-         status
-         &The state of the film \\
-        \bottomrule
-    \end{tabular}
-   \end{table}
-\end{slide}
-%%
-
-
-\section{Modeling and Forecasting}
-
-
-%%
-\begin{slide}[toc=,bm=]{Model}
-  Random Forest Regression
-\begin{itemize}
-  \item The random forest algorithm is an ensemble technique that combines 
-  multiple decision trees. A random forest usually has a better generalization performance than 
-  an individual tree due to randomness, which helps to decrease the model’s varaiance. 
-  Other advantages of random forests are that they are less sensitive to outliers 
-  in the dataset and don’t require much parameter tuning. The only parameter 
-  in random forests that we typically need to experiment with is the number of trees in the ensemble. 
-\end{itemize}
-
-\end{slide}
-%%
-%%==========================================================================================
-
-
-
-%%
-\begin{slide}{Forecast}
-
-\begin{itemize}
-\item Random forest regression algorithm makes prediction.
-\end{itemize}
-
-\begin{table}
-\centering
-\caption{Forecast Results}
-
-\begin{tabular}{p{65pt} | p{110pt}}
-\toprule
-  id & revenue\\
-\hline
-  3001 & 193077.0567 \\
-  3002 & 528484.58  \\
-  3003 & 4562948.933  \\
-  3004 &  14433891.04 \\
-  3005 &  494782.0824  \\
-  3006 &  3010483.492  \\
-\bottomrule
-
-\end{tabular}
-\end{table}
-
+  \begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.5\textwidth]{figures//positive_test.eps}
+    \caption{Positive Words}
+  \end{figure}
 \end{slide}
 
+
+\begin{slide}{Negative Words}
+  \begin{itemize}
+    \item Count the words of negative attitude text.
+  \end{itemize}
+  \begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.8\textwidth]{figures//negative_test.eps}
+    \caption{Negative Words}
+  \end{figure}
+\end{slide}
+
+\begin{slide}[toc=,bm=]{Neutral Words}
+  \begin{itemize}
+    \item Analyze and display neutral texts.
+  \end{itemize}
+  \begin{figure}[htbp]
+    \centering
+    \begin{minipage}[t]{0.48\textwidth}
+      \centering
+      \includegraphics[width=0.9\textwidth]{figures//neutral.eps}
+      \vspace{-1.4em}
+      \caption{Neutral Words}
+    \end{minipage}
+    \begin{minipage}[t]{0.48\textwidth}
+      \centering
+      \includegraphics[width=0.9\textwidth]{figures//neutral_tree.eps}
+      \vspace{-1.4em}
+      \caption{Tree of Most Neutral Words}
+    \end{minipage}
+  \end{figure}
+\end{slide}
 
 %%
 %%==========================================================================================
 
 
-\section{Conclusion}
+%%==========================================================================================
+%%
+
+% \begin{slide}[toc=,bm=]{Propaganda}
+%   \begin{itemize}
+%     \item Later stage propaganda has a great influence on the existing.
+%   \end{itemize}
+%   \begin{figure}[htbp]
+%     \centering
+%     \begin{minipage}[t]{0.48\textwidth}
+%       \centering
+%       \includegraphics[width=0.4\textwidth]{figures/has_homepage.eps}
+%       \vspace{-1.4em}
+%       \caption{Homepage}
+%     \end{minipage}
+%     \begin{minipage}[t]{0.48\textwidth}
+%       \centering
+%       \includegraphics[width=0.4\textwidth]{figures/isTanglineNA.eps}
+%       \vspace{-1.4em}
+%       \caption{Tagline}
+%     \end{minipage}
+%     \begin{minipage}[t]{0.48\textwidth}
+%       \centering
+%       \includegraphics[width=0.5\textwidth]{figures/keywords.eps}
+%       \vspace{-1.4em}
+%       \caption{keywords}
+%     \end{minipage}
+%     \begin{minipage}[t]{0.48\textwidth}
+%       \centering
+%       \includegraphics[width=0.5\textwidth]{figures/overview.eps}
+%       \vspace{-1.4em}
+%       \caption{Overview}
+%     \end{minipage}
+%   \end{figure}
+% \end{slide}
+
 
 %%==========================================================================================
 %%
-\begin{slide}[toc=,bm=]{Conclusion}
-\begin{itemize}
-\item The investment in the early stage and publicity in the later stage have an impact on the box office.
-\smallskip
+% \begin{slide}[toc=,bm=]{Realte Date}
+% %  \begin{itemize}
+% %    \item The income of the film is directly proportional to the budget.
+% %  \end{itemize}
+%   \begin{figure}[htbp]
+%     \centering
+%     \includegraphics[width=0.7\textwidth]{figures//release_date.eps}
+%     \caption{Realte Date}
+%   \end{figure}
+% \end{slide}
+% %%
 
-\item
-\smallskip
-In the early stage, the number of actors and crew should be moderate, not the more the better.
 
-\item
-\smallskip
-The prediction accuracy can be further improved, such as using XGBoost
-\end{itemize}
+% \section{Data Processing}
 
-\end{slide}
+
+% \begin{slide}[toc=,bm=]{Data Processing}
+%   \begin{itemize}
+%     \item Processing data independent of results.
+%       \begin{itemize}
+%         \item For example:imdb_id,orginal_title,poster_path,status
+%       \end{itemize}
+%     \item  Normalization of training data and test data.
+%       \begin{itemize}
+%         \item For example:has_homepage,collection,overview,isTaglineNA,Keywords_count etc
+%       \end{itemize}
+%   \end{itemize}
+%   \begin{table}[htbp]
+%     \caption{Delete Data}
+%     \begin{tabular}{p{100pt} | p{200pt}}\toprule
+%      Name & Description  \\
+%          \midrule
+%          imdb_id
+%          & ID of movie in TMDB \\
+%          orginal_title
+%          & The original name of the movie\\
+%          poster_path
+%          & Movie poster link \\
+%          status
+%          &The state of the film \\
+%         \bottomrule
+%     \end{tabular}
+%    \end{table}
+% \end{slide}
+% %%
+
+
+% \section{Modeling and Forecasting}
+
+
+% %%
+% \begin{slide}[toc=,bm=]{Model}
+
+% \begin{itemize}
+%   \item Linear Regression
+%      \begin{itemize}
+%        \item 2.4236034243650315
+%      \end{itemize}  
+%   \item Random Forest Regression
+%      \begin{itemize}
+%        \item 2.21274632296787
+%      \end{itemize}
+% \end{itemize}
+
+% \end{slide}
+% %%
+% %%==========================================================================================
+
+
+
+% %%
+% \begin{slide}{Forecast}
+
+% \begin{itemize}
+% \item Random forest regression algorithm makes prediction.
+% \end{itemize}
+
+% \begin{table}
+% \centering
+% \caption{Forecast Results}
+
+% \begin{tabular}{p{65pt} | p{110pt}}
+% \toprule
+%   id & revenue\\
+% \hline
+%   3001 & 193077.0567 \\
+%   3002 & 528484.58  \\
+%   3003 & 4562948.933  \\
+%   3004 &  14433891.04 \\
+%   3005 &  494782.0824  \\
+%   3006 &  3010483.492  \\
+% \bottomrule
+
+% \end{tabular}
+% \end{table}
+
+% \end{slide}
+
+
+% %%
+% %%==========================================================================================
+
+
+% \section{Conclusion}
+
+% %%==========================================================================================
+% %%
+% \begin{slide}[toc=,bm=]{Conclusion}
+% \begin{itemize}
+% \item The investment in the early stage and publicity in the later stage have an impact on the box office.
+% \smallskip
+
+% \item
+% \smallskip
+% In the early stage, the number of actors and crew should be moderate, not the more the better.
+
+% \item
+% \smallskip
+% The prediction accuracy can be further improved, such as using XGBoost
+% \end{itemize}
+
+% \end{slide}
 %%
 %%==========================================================================================
 
