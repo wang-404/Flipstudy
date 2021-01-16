@@ -149,7 +149,7 @@ basicstyle=\footnotesize\ttfamily}
 % title
 % TODO: Customize to your Own Title, Name, Address
 %
-\title{Tweet Sentiment Extraction}
+\title{Twitter US Airline Sentiment}
 \author{
   \\Shukai Wang
   \\Xi'an Shiyou University
@@ -163,7 +163,7 @@ rf=\href{http://www.tulip.org.au}{
 Last Changed by: \textsc{\gitCommitterName}\ (\gitAuthorDate)
 %Last Changed by: \textsc{\gitCommitterName}\ \gitVtagn-\gitAbbrevHash\ (\gitAuthorDate)
 },
-cf={Tweet Sentiment Extraction},
+cf={Twitter US Airline Sentiment},
 }
 
 
@@ -195,16 +195,12 @@ cf={Tweet Sentiment Extraction},
 
     \twotonebox{\rotatebox{90}{Description}}{\parbox{.86\textwidth}
     {
-      Tweets are circulating every second, and it is difficult to say 
-      whether the sentiment behind a particular tweet will affect the company, 
-      the viral (positive) or devastating profits of the personal brand due to negative effects. 
-      In this case, it is very important to capture emotions with words in the process of creating 
-      and updating decisions and reactions within a few seconds. In this game, you need to choose the 
-      emotional part of the tweet (word or phrase).
+      Sentiment analysis work on the issues of each major US airline. 
+      Twitter counted the tweets related to airlines since February 2015,
+       and analyzed whether the sentiments contained in these tweets were positive, neutral or negative.
       \begin{itemize}
         \item 
-        According to a given data set, determine which words support positive, 
-        negative or neutral emotions.  
+          Analyze how travelers in February 2015 expressed their feelings on Twitter.
       \end{itemize}
     }
     }
@@ -232,20 +228,23 @@ cf={Tweet Sentiment Extraction},
     \begin{tabular}{p{100pt} p{200pt}}\toprule
       Attribute & Explanation \\
          \midrule
-         textID
-         & Text number \\
+         airline_sentiment
+         & About the attitude of airlines. \\
          text
-         & The text given in the training data. \\
-         selected_text
-         & The selected part of the text in the given text.  \\
-         sentiment
-         & The emotion of the selected part of the text.  \\
+         & The text content of the tweet. \\
+         airline
+         & The name of the airline.  \\
+         retweet_count
+         & The number of reposts of the tweet.  \\
+         tweet_created
+         & The time the tweet was generated.  \\
         \bottomrule
-   
     \end{tabular}
-  
   \end{table}
-  
+  It also includes attributes such as tweet_id, 
+  airline_sentiment_confidence, negativereason, 
+  negativereason_confidence, airline_sentiment_gold, name, 
+  negativereason_gold, tweet_coord, tweet_location, user_timezone, etc.
 
   \bigskip
 
@@ -257,22 +256,22 @@ cf={Tweet Sentiment Extraction},
 
 \begin{slide}{Sentiment}
   \begin{itemize}
-    \item Positive, negative, and neutral in sentiment, respectively, 
-    account for the number and proportion. Neutral is 11117, positive is 8582, and negative is 7781.
+    \item Positive, negative and neutral emotions accounted for the number and proportion of the total number of people respectively. 
+    Among them, the number of negative attitudes is the largest and the number of positive attitudes is the least.
   \end{itemize}
   \begin{figure}[htbp]
     \centering
     \begin{minipage}[t]{0.48\textwidth}
       \centering
-      \includegraphics[width=0.9\textwidth]{figures//sentiment.eps}\\
+      \includegraphics[width=0.9\textwidth]{figures//sentimentmap.eps}\\
       \vspace{-1.4em}
-      \caption{Sentiment}
+      \caption{Sentiment Map}
     \end{minipage}
     \begin{minipage}[t]{0.48\textwidth}
       \centering
-      \includegraphics[width=0.9\textwidth]{figures//snetimentdistruct.eps}\\
+      \includegraphics[width=0.9\textwidth]{figures//sentimentdist.eps}\\
       \vspace{-1.4em}
-      \caption{Sentiment Distribution}
+      \caption{Sentiment Dist}
     \end{minipage}
   \end{figure}
 \end{slide}
@@ -282,101 +281,153 @@ cf={Tweet Sentiment Extraction},
 
 %%==========================================================================================
 %%
-\begin{slide}[toc=,bm=]{Selected_text Count}
+\begin{slide}[toc=,bm=]{Airline}
   \begin{itemize}
-    \item After separating selected_text, look at the words used frequently.
+    \item The percentage of each airline in all airlines.
   \end{itemize}
+  
   \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.5\textwidth]{figures//st_count_test.eps}
-    \caption{Select_text Count}
+    \begin{minipage}[t]{0.48\textwidth}
+      \centering
+      \includegraphics[width=0.9\textwidth]{figures//airlinemap.eps}\\
+      \vspace{-1.4em}
+      \caption{Airline Map}
+    \end{minipage}
+    \begin{minipage}[t]{0.48\textwidth}
+      \centering
+      \includegraphics[width=0.9\textwidth]{figures//airlinedist.eps}\\
+      \vspace{-1.4em}
+      \caption{Airline Dist}
+    \end{minipage}
   \end{figure}
+%   \begin{figure}[htbp]
+%     \centering
+%     \includegraphics[width=0.5\textwidth]{figures//st_count_test.eps}
+%     \caption{Select_text Count}
+%   \end{figure}
 \end{slide}
 %%
 %%==========================================================================================
 
-\begin{slide}[toc=,bm=]{Selected_text Count}
+\begin{slide}[toc=,bm=]{Airline Attitude}
   \begin{itemize}
-    \item After processing some irrelevant words, count the number of words.
+    \item Distribution of attitudes of different airlines.
+  \end{itemize}
+  \begin{figure}[htbp]
+    \centering
+      \includegraphics[width=0.5\textwidth]{figures//airlineattitude.eps}
+      \caption{Airline Attitude}
+ \end{figure}
+\end{slide}
+
+
+\begin{slide}{Airline Attitude}
+  \begin{itemize}
+    \item The individual attitude distribution of each airline.
   \end{itemize}
   \begin{figure}[htbp]
     \centering
     \begin{minipage}[t]{0.48\textwidth}
       \centering
-      \includegraphics[width=0.5\textwidth]{figures//st_count_new_n.eps}\\
+      \includegraphics[width=0.9\textwidth]{figures//virgin.eps}\\
       \vspace{-1.4em}
-      \caption{Number Count}
+      \caption{Virgin America}
     \end{minipage}
     \begin{minipage}[t]{0.48\textwidth}
       \centering
-      \includegraphics[width=0.9\textwidth]{figures//st_count_new.eps}\\
+      \includegraphics[width=0.9\textwidth]{figures//united.eps}\\
       \vspace{-1.4em}
-      \caption{Tree of Most Common Words}
+      \caption{United}
+    \end{minipage}
+  \end{figure}
+\end{slide}
+
+\begin{slide}{Airline Attitude}
+  % \begin{itemize}
+  %   \item The individual attitude distribution of each airline.
+  % \end{itemize}
+  \begin{figure}[htbp]
+    \centering
+    \begin{minipage}[t]{0.48\textwidth}
+      \centering
+      \includegraphics[width=0.9\textwidth]{figures//southwest.eps}\\
+      \vspace{-1.4em}
+      \caption{Southwest}
+    \end{minipage}
+    \begin{minipage}[t]{0.48\textwidth}
+      \centering
+      \includegraphics[width=0.9\textwidth]{figures//delta.eps}\\
+      \vspace{-1.4em}
+      \caption{Delta}
+    \end{minipage}
+  \end{figure}
+\end{slide}
+
+\begin{slide}{Airline Attitude}
+  % \begin{itemize}
+  %   \item The individual attitude distribution of each airline.
+  % \end{itemize}
+  \begin{figure}[htbp]
+    \centering
+    \begin{minipage}[t]{0.48\textwidth}
+      \centering
+      \includegraphics[width=0.9\textwidth]{figures//us.eps}\\
+      \vspace{-1.4em}
+      \caption{US Airways}
+    \end{minipage}
+    \begin{minipage}[t]{0.48\textwidth}
+      \centering
+      \includegraphics[width=0.9\textwidth]{figures//american.eps}\\
+      \vspace{-1.4em}
+      \caption{American}
     \end{minipage}
   \end{figure}
 \end{slide}
 
 
-\begin{slide}{Text Count}
+\begin{slide}{negative Word Cloud}
   \begin{itemize}
-    \item Count and view the number of text words. Found similar to the selected_text word.
+    \item Words with negative emotions involve flight, canceled, hour, etc.
   \end{itemize}
   \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.5\textwidth]{figures//text_count_test.eps}
-    \caption{Text Count}
-  \end{figure}
-\end{slide}
-
-
-
-
-\begin{slide}{Positive Words}
-  \begin{itemize}
-    \item Perform word statistics on texts with positive attitudes.
-  \end{itemize}
-  \begin{figure}[htbp]
-    \centering
-    \includegraphics[width=0.5\textwidth]{figures//positive_test.eps}
-    \caption{Positive Words}
-  \end{figure}
-\end{slide}
-
-
-\begin{slide}{Negative Words}
-  \begin{itemize}
-    \item Count the words of negative attitude text.
-  \end{itemize}
-  \begin{figure}[htbp]
-    \centering
-    \includegraphics[width=0.8\textwidth]{figures//negative_test.eps}
+    \includegraphics[width=0.4\textwidth]{figures//negativetweet.eps}
     \caption{Negative Words}
   \end{figure}
 \end{slide}
 
-\begin{slide}[toc=,bm=]{Neutral Words}
+\begin{slide}{Positive Word Cloud}
   \begin{itemize}
-    \item Analyze and display neutral texts.
+    \item Words with negative emotions include thanks, great, etc.
   \end{itemize}
   \begin{figure}[htbp]
     \centering
-    \begin{minipage}[t]{0.48\textwidth}
-      \centering
-      \includegraphics[width=0.9\textwidth]{figures//neutral.eps}
-      \vspace{-1.4em}
-      \caption{Neutral Words}
-    \end{minipage}
-    \begin{minipage}[t]{0.48\textwidth}
-      \centering
-      \includegraphics[width=0.9\textwidth]{figures//neutral_tree.eps}
-      \vspace{-1.4em}
-      \caption{Tree of Most Neutral Words}
-    \end{minipage}
+    \includegraphics[width=0.4\textwidth]{figures//positiontweet.eps}
+    \caption{Positive Words}
   \end{figure}
 \end{slide}
 
-%%
-%%==========================================================================================
+\begin{slide}{Neutral Word Cloud}
+
+  \begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.4\textwidth]{figures//neutraltweet.eps}
+    \caption{Neutral Words}
+  \end{figure}
+\end{slide}
+
+\begin{slide}{Negative Reason}
+  \begin{itemize}
+    \item Perform statistical tactics on the causes of negative attitudes.
+  \end{itemize}
+  \begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.5\textwidth]{figures//negativereason.eps}
+    \caption{Total Negative Reasons}
+  \end{figure}
+\end{slide}
+
 
 
 %%==========================================================================================
@@ -431,60 +482,79 @@ cf={Tweet Sentiment Extraction},
 % %%
 
 
-% \section{Data Processing}
+\section{Data Processing}
 
 
-% \begin{slide}[toc=,bm=]{Data Processing}
-%   \begin{itemize}
-%     \item Processing data independent of results.
-%       \begin{itemize}
-%         \item For example:imdb_id,orginal_title,poster_path,status
-%       \end{itemize}
-%     \item  Normalization of training data and test data.
-%       \begin{itemize}
-%         \item For example:has_homepage,collection,overview,isTaglineNA,Keywords_count etc
-%       \end{itemize}
-%   \end{itemize}
-%   \begin{table}[htbp]
-%     \caption{Delete Data}
-%     \begin{tabular}{p{100pt} | p{200pt}}\toprule
-%      Name & Description  \\
-%          \midrule
-%          imdb_id
-%          & ID of movie in TMDB \\
-%          orginal_title
-%          & The original name of the movie\\
-%          poster_path
-%          & Movie poster link \\
-%          status
-%          &The state of the film \\
-%         \bottomrule
-%     \end{tabular}
-%    \end{table}
-% \end{slide}
-% %%
+\begin{slide}[toc=,bm=]{Data Processing}
+  \begin{itemize}
+    \item Processing data independent of results.
+      \begin{itemize}
+        \item For example:tweet_id,name,tweet_location,tweet_coord etc
+      \end{itemize}
+    \item  Normalization of training data and test data.
+      \begin{itemize}
+        \item For example:airline_sentiment,airline etc
+      \end{itemize}
+    \item Split train and test data.
+  \end{itemize}
+  % \begin{table}[htbp]
+  %   \caption{Delete Data}
+  %   \begin{tabular}{p{100pt} | p{200pt}}\toprule
+  %    Name & Description  \\
+  %        \midrule
+  %        tweet_id
+  %        & ID of movie in TMDB \\
+  %        tweet_location
+  %        & The original name of the movie\\
+  %        poster_path
+  %        & Movie poster link \\
+  %        status
+  %        &The state of the film \\
+  %       \bottomrule
+  %   \end{tabular}
+  %  \end{table}
+\end{slide}
+%%
 
 
-% \section{Modeling and Forecasting}
+\section{Modeling}
 
 
-% %%
-% \begin{slide}[toc=,bm=]{Model}
+%%
+\begin{slide}[toc=,bm=]{Model}
 
-% \begin{itemize}
-%   \item Linear Regression
-%      \begin{itemize}
-%        \item 2.4236034243650315
-%      \end{itemize}  
-%   \item Random Forest Regression
-%      \begin{itemize}
-%        \item 2.21274632296787
-%      \end{itemize}
-% \end{itemize}
+\begin{itemize}
+  \item Random Forest
+    %  \begin{itemize}
+    %    \item 2.4236034243650315
+    %  \end{itemize}  
+  \item Gradient Boosting
+    %  \begin{itemize}
+    %    \item 2.21274632296787
+    %  \end{itemize}
+  \item LSTM RNN
+\end{itemize}
 
-% \end{slide}
-% %%
-% %%==========================================================================================
+\begin{table}
+\centering
+\caption{Comparative Results}
+
+\begin{tabular}{p{150pt} | p{200pt}}
+\toprule
+  Model & Accuracy\\
+\hline
+ Random Forest & 0.8135245901639344 \\
+ Gradient Boosting & 0.8265027322404371  \\
+ LSTM RNN & 0.8865852952003479  \\
+
+\bottomrule
+
+\end{tabular}
+\end{table}
+
+\end{slide}
+%%
+%%==========================================================================================
 
 
 
@@ -521,25 +591,25 @@ cf={Tweet Sentiment Extraction},
 % %%==========================================================================================
 
 
-% \section{Conclusion}
+\section{Conclusion}
 
-% %%==========================================================================================
-% %%
-% \begin{slide}[toc=,bm=]{Conclusion}
-% \begin{itemize}
-% \item The investment in the early stage and publicity in the later stage have an impact on the box office.
-% \smallskip
+%%==========================================================================================
+%%
+\begin{slide}[toc=,bm=]{Conclusion}
+\begin{itemize}
+\item On this issue, the new model is better than the traditional machine learning model.
+\smallskip
 
-% \item
-% \smallskip
-% In the early stage, the number of actors and crew should be moderate, not the more the better.
+\item
+\smallskip
+Pay attention to the adjustment of parameters when training the model.
 
-% \item
-% \smallskip
-% The prediction accuracy can be further improved, such as using XGBoost
-% \end{itemize}
+\item
+\smallskip
+Other models can be used to further improve accuracy.
+\end{itemize}
 
-% \end{slide}
+\end{slide}
 %%
 %%==========================================================================================
 
