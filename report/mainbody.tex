@@ -1,146 +1,62 @@
-%=================================================================
 \section{Introduction}
 \label{sec-intro}
-In 2018, film revenue has increased significantly, and the film industry is more popular than ever.
-What kind of movies make high box office receipts. In the process of preparation and shooting, 
-whether the budget, the number of directors and actors have a great impact. Whether the publicity and 
-preview of later films will affect the final box office income of films.
+Given tweets about six US airlines, the task is to predict whether a tweet contains positive, 
+negative, or neutral sentiment about the airline. This is a typical supervised learning task where
+ given a text string, we have to categorize the text string into predefined categories.
 
-Data Analysis aims to show the relationship between attributes and box office revenue 
-according to the data provided. And further integration of data, delete irrelevant data, 
-unified data values and so on.
+ Data Analysis aims to analyze the correlation between each attribute and passenger evaluation with given data. And further integrate data, delete irrelevant
+  data, unified data values, etc.
 
-Models and Forecasts aims to use the integrated data to train the relevant models, 
-improve the accuracy, and make the box office revenue forecast for some of the given data.
+  Models and Forecasts aims to use the integrated data to train the relevant models, 
+  improve the accuracy, and Predict attitudes for certain given comments.
 
-In this paper, we train the random forest model with the integrated data, 
-and use the model to predict the box office of movies.
+  In this article, we use multiple models to train the data and make predictions, and
+   finally compare multiple models to get the best training model.
+
 \section{Preliminaries} \label{sec-preliminaries}
-Analyze the data in the preparation stage, and analyze it from different angles and box office. 
-For example, from the perspective of budget, the number of actors, the number of crew members, 
-and post-promotion. It also showcases popular movie genres and movie language in the form of a word cloud.
 
+In the early stage, the existing data were visually analyzed.
 
-%\begin{center}
-%  \begin{minipage}{0.3\linewidth}
-%  \centering
-%    \includegraphics[width=0.8\linewidth]{figures//budget.eps}
-%  {\small{Budget}}
-%  \end{minipage}
-%  \hfill
-%  \begin{minipage}{0.3\linewidth}
-%  \centering
-%    \includegraphics[width=0.8\linewidth]{figures//cest.eps}\\
-%  {\small{Cast}}
-%  \end{minipage}
-%  \hfill
-%  \begin{minipage}{0.3\linewidth}
-%  \centering
-%    \includegraphics[width=0.8\linewidth]{figures//crew.eps}\\
-%  {\small{Crew}}
-%  \end{minipage}
-%\end{center}
+First analyze the emotional attitudes of all comments, including positive, negative, and neutral. And make response statistics.
 
+Furthermore, the attitude statistics of different airlines’ comments are made.
 
-%\begin{center}
-%  \begin{minipage}{0.3\linewidth}
-%  \centering
-%    \includegraphics[width=0.8\linewidth]{figures//has_homepage.eps}
-%  {\small{Homepage}}
-%  \end{minipage}
-%  \hfill
-%  \begin{minipage}{0.3\linewidth}
-%  \centering
-%    \includegraphics[width=0.8\linewidth]{figures//isTanglineNA.eps}
-%  {\small{Tagline}}
-%  \end{minipage}
-%  \hfill
-%  \begin{minipage}{0.3\linewidth}
-%  \centering
-%    \includegraphics[width=0.8\linewidth]{figures//overview.eps}
-%  {\small{Overview}}
-%  \end{minipage}
-%\end{center}
+After the statistics of different companies, the sentiment statistics of the tweets 
+commenting on each company are further carried out.
 
-%\begin{center}
-%  \begin{minipage}{0.3\linewidth}
-%  \centering
-%    \includegraphics[width=0.8\linewidth]{figures//collection.eps}\\
-%  {\small{File Series}}
-%  \end{minipage}
-%  \hfill
-%  \begin{minipage}{0.3\linewidth}
-%  \centering
-%    \includegraphics[width=0.8\linewidth]{figures//company.eps}\\
-%  {\small{File Company}}
-%  \end{minipage}
-%  \hfill
-%  \begin{minipage}{0.3\linewidth}
-%  \centering
-%    \includegraphics[width=0.8\linewidth]{figures//counrty.eps}
-%  {\small{Company Number}}
-%  \end{minipage}
-%\end{center}
-
-
-%\begin{center}
-%  \begin{minipage}{0.4\linewidth}
-%  \centering
-%    \includegraphics[width=0.8\linewidth]{figures//genre_clold.eps}\\
-%  {\small{Genre}}
-%  \end{minipage}
-%  \hfill
-%  \begin{minipage}{0.4\linewidth}
-%  \centering
-%    \includegraphics[width=0.8\linewidth]{figures//language.eps}\\
-%  {\small{Language}}
-%  \end{minipage}
-%  \hfill
-%\end{center}
+Finally, the statistics of frequently used high-frequency words are carried out on three attitudes: positive, negative and neutral.
 
 \section{Method} \label{sec-method}
-After the preparation work is completed, the data will be further processed. 
-Delete data not related to the box office, For example: imdb_id, orginal_title, poster_path, status.
-Normalize some data,For example: has_homepage, collection, overview, isTaglineNA, Keywords_count etc
 
-%5\begin{table}
-%  \begin{center}
-%    \centering
-%    \caption{Partial Processing Data}
-%    \begin{tabular}{ c | c }
-%      \toprule
-%      Name     &  Description        \\
-%      \midrule
-%      imdb id       &  ID of movie in TMDB  \\
-%      orginal title &  The original name of the movie \\
-%      poster path &  Movie poster link \\
-%      status   & The state of the film \\
-%      keywords      &  Key words of movies \\
-%      tagline &  The slogan of the film \\
-%      homepage & Official film Homepage \\
-%      overview   &A brief description of the film \\
-%      collection & Series name of film series\\
-%      release date & Film release time\\ 
-%      \bottomrule
-%      \end{tabular}
-%  \end{center}
-%\end{table}
+
+After the preparatory work, the data are further processed.
+
+Processing data independent of results.
+
+Normalization of training data and test data.
+
+Split train and test data.
 
 After the completion of data processing, the model was established using random forest algorithm.
 
-Random Forest Algorithm is an ensemble technique that combines multiple decision trees. 
-    Other advantages of random forests are that they are less sensitive to outliers in the dataset 
-    and don’t require much parameter tuning.
+After the data processing is completed, three models of Random Forest, Gradient Boosting, 
+and LSTM RNN are used to fit the data, and the results are compared.
+
+
 
 %\section{Experiment} \label{sec-experiment}
 %After the training of the model, the prediction was made by using the data.
 
+
 \section{Conclusions} \label{sec-conclusions}
-The investment in the early stage and publicity in the later stage have an impact on the box office.
 
-In the early stage, the number of actors and crew should be moderate, not the more the better.
+On this issue, the new model is better than the traditional machine learning model.
 
-The prediction accuracy can be further improved, such as using XGBoost.
+Pay attention to the adjustment of parameters when training the model.
+
+Other models can be used to further improve accuracy.
+
+
 \section*{Acknowledgment}
 
 Thanks for the learning opportunities provided by Tulip, 
@@ -149,3 +65,4 @@ Thanks to my tutor for answering questions and puzzles during my study,
 which is my rapid progress. At the same time, I should also like to thank my senior brother, 
 sister and classmates for their help. When I am not successful in my study, 
 I will lend a helping hand to help me solve problems.
+
